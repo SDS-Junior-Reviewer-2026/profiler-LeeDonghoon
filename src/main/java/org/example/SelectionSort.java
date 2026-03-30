@@ -3,12 +3,14 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SelectionSort {
+public class SelectionSort implements SortServiceLib{
     private int changeCnt = 0;
+    private ArrayList<Integer> arr;
 
     // selection sort 오름차순 예시코드
     public void selectionSort(ArrayList<Integer> arr) {
         changeCnt = 0;
+        this.arr = arr;
         for (int i = 0; i < arr.size(); i++) {
             for (int j = i + 1; j < arr.size(); j++) {
                 if (arr.get(i) > arr.get(j)) {
@@ -24,11 +26,27 @@ public class SelectionSort {
     public int getChangeCnt() {
         return changeCnt;
     }
+    public ArrayList<Integer> getArr() { return arr; }
 
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
         ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(5,2,1,3,1,2,6,9));
         sort.selectionSort(arr);
         System.out.println(arr);
+    }
+
+    @Override
+    public void sort(ArrayList<Integer> arr) {
+        selectionSort(arr);
+    }
+
+    @Override
+    public int getChangeCount() {
+        return getChangeCnt();
+    }
+
+    @Override
+    public ArrayList<Integer> getSortedArr() {
+        return getArr();
     }
 }
